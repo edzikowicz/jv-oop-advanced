@@ -3,10 +3,21 @@ package core.basesyntax;
 public class Main {
 
     public static void main(String[] args) {
-        Square square = new Square(5);
-        System.out.println(square.getArea());
+        FigureSupplier figureSupplier = new FigureSupplier();
+        System.out.println(figureSupplier.getRandomFigure());
 
-        IsoscelesTrapezoid isoscelesTrapezoid = new IsoscelesTrapezoid( 4,5,6);
-        System.out.println(isoscelesTrapezoid.getArea());
+        Figure[] figures = new Figure[6];
+
+        for (int i = 0; i < figures.length; i++) {
+            if (i < figures.length / 2) {
+                figures[i] = figureSupplier.getRandomFigure();
+            } else {
+                figures[i] = figureSupplier.getDefaultFigure();
+            }
+        }
+
+        for (Figure figure : figures) {
+            System.out.println(figure.draw());
+        }
     }
 }
